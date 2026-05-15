@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Летние каникулы ☀️ Большой сайт для детей</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe0b5 100%);
+            color: #2d3e2b;
+            overflow-x: hidden;
+        }
+
+        /* Анимации */
+        @keyframes bounce {
+            0%,100%{ transform: translateY(0);}
+            50%{ transform: translateY(-10px);}
+        }
+        @keyframes float {
+            0%{ transform: translateY(0px);}
+            100%{ transform: translateY(-8px);}
+        }
+        @keyframes fadeSlideUp {
+            0%{ opacity:0; transform: translateY(30px);}
+            100%{ opacity:1; transform: translateY(0);}
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Навигация (вкладки) */
+        .page-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: rgba(255,248,225,0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 100px;
+            margin: 20px auto 30px;
+            width: fit-content;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 15px;
+            z-index: 100;
+        }
+        .nav-btn {
+            background: #ffb347;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            font-family: 'Fredoka One', cursive;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 5px 0 #c46f1a;
+        }
+        .nav-btn i {
+            margin-right: 8px;
+        }
+        .nav-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #c46f1a;
+        }
+        .nav-btn.active {
+            background: #f2811a;
+            transform: scale(1.02);
+            box-shadow: 0 6px 0 #a3510c;
+        }
+
+        /* Страницы */
+        .page {
+            display: none;
+            animation: fadeSlideUp 0.5s ease;
+        }
+        .page.active-page {
+            display: block;
+        }
+
+        /* Карточки */
+        .card {
+            background: white;
+            border-radius: 50px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.01);
+        }
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.8rem;
+            color: #ff8c42;
+            text-shadow: 3px 3px 0 #ffe0b5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin: 20px 0 15px;
+            color: #e86f1f;
+            border-left: 10px solid #ffb347;
+            padding-left: 20px;
+        }
+        .emoji-big {
+            font-size: 3.5rem;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .item-card {
+            background: #fff7e8;
+            border-radius: 40px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 2px solid #ffd8a5;
+        }
+        .item-card i {
+            font-size: 3rem;
+            color: #ff9f4a;
+            margin-bottom: 10px;
+        }
+        .item-card h3 {
+            font-size: 1.4rem;
+            margin: 10px 0;
+        }
+        .safety-list {
+            background: #eaffea;
+            border-radius: 40px;
+            padding: 25px;
+            list-style: none;
+        }
+        .safety-list li {
+            padding: 12px;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #cbe5be;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .fun-fact {
+            background: #ffefcf;
+            border-radius: 50px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        button {
+            background: #ffb347;
+            border: none;
+            border-radius: 40px;
+            padding: 12px 24px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:active {
+            transform: scale(0.96);
+        }
+        .footer {
+            text-align: center;
+            background: #ffddb0;
+            border-radius: 60px 60px 20px 20px;
+            padding: 25px;
+            margin-top: 50px;
+            font-weight: bold;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            margin: 12px 0;
+            padding: 12px 20px;
+            border-radius: 60px;
+            cursor: pointer;
+        }
+        .completed {
+            text-decoration: line-through;
+            background: #d4f1d4;
+            opacity: 0.8;
+        }
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .book-badge {
+            background: #ffe0b5;
+            border-radius: 40px;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+        @media (max-width: 700px) {
+            .nav-btn { padding: 6px 14px; font-size: 0.8rem;}
+            h1 { font-size: 2rem;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-nav">
+    <button class="nav-btn active" data-page="home"><i class="fas fa-sun"></i> Главная</button>
+    <button class="nav-btn" data-page="day"><i class="fas fa-clock"></i> Режим дня</button>
+    <button class="nav-btn" data-page="games"><i class="fas fa-gamepad"></i> Игры</button>
+    <button class="nav-btn" data-page="safety"><i class="fas fa-shield-heart"></i> Безопасность</button>
+    <button class="nav-btn" data-page="adventure"><i class="fas fa-map"></i> Приключения</button>
+    <button class="nav-btn" data-page="books"><i class="fas fa-book-open"></i> Книги</button>
+</div>
+
+<div class="container">
+    <!-- ================= СТРАНИЦА 1: ГЛАВНАЯ (добавлены книги, поделки, загадка) ================= -->
+    <div id="home-page" class="page active-page">
+        <div class="card" style="text-align: center;">
+            <span class="emoji-big">☀️🏖️🍉🐞</span>
+            <h1>Мои летние каникулы!</h1>
+            <p style="font-size: 1.4rem;">Лето — это время радости, дружбы и новых открытий! 🌟</p>
+            <div style="margin: 20px 0;">
+                <i class="fas fa-smile-wink" style="font-size: 4rem; color: #ff9f4a;"></i>
+            </div>
+            <p><strong>Привет, я Алёна!</strong> На этом сайте ты найдёшь:</p>
+            <ul style="list-style: none; margin-top: 15px;">
+                <li>✅ <i class="fas fa-check-circle"></i> Идеальный летний режим дня</li>
+                <li>✅ <i class="fas fa-gamepad"></i> Самые весёлые игры</li>
+                <li>✅ <i class="fas fa-shield-heart"></i> Правила безопасности</li>
+                <li>✅ <i class="fas fa-book-open"></i> Книги, которые интересно читать летом</li>
+                <li>✅ <i class="fas fa-paintbrush"></i> Поделки и творчество</li>
+            </ul>
+            <button id="startBtn" style="margin-top: 30px;"><i class="fas fa-arrow-right"></i> Начнём приключение!</button>
+        </div>
+
+        <!-- КНИГИ ДЛЯ ЛЕТНЕГО ЧТЕНИЯ (дополнительно на главной) -->
+        <div class="card">
+            <h2><i class="fas fa-book"></i> Книги, которые можно почитать летом</h2>
+            <div class="book-list">
+                <span class="book-badge">📖 "Волшебник Изумрудного города"</span>
+                <span class="book-badge">🐱 "Котёнок по имени Гав"</span>
+                <span class="book-badge">🐘 "Слонёнок и другие сказки"</span>
+                <span class="book-badge">🕵️ "Приключения Эмиля из Лённеберги"</span>
+                <span class="book-badge">🌻 "Цветик-семицветик"</span>
+                <span class="book-badge">🦊 "Маленький принц" (для тех, кто любит мечтать)</span>
+            </div>
+            <p style="margin-top: 15px;"><i class="fas fa-lightbulb"></i> Совет: читай по 20 минут в день — и твой словарный запас станет огромным!</p>
+        </div>
+
+        <!-- Идея для поделки + загадка -->
+        <div class="grid-3">
+            <div class="item-card"><i class="fas fa-paintbrush"></i><h3>Поделка "Морская звезда"</h3><p>Сделай из картона и блёсток морскую звезду — укрась комнату!</p></div>
+            <div class="item-card"><i class="fas fa-question-circle"></i><h3>Загадка лета</h3><p id="riddleText">Что можно увидеть с закрытыми глазами?</p><button id="riddleAnswerBtn">Показать ответ</button><p id="riddleAns" style="margin-top:10px; display:none;"><strong>Сон! 😴</strong></p></div>
+            <div class="item-card"><i class="fas fa-diary"></i><h3>Летний дневник</h3><p>Записывай каждый день одно яркое событие — будет память на всю жизнь!</p></div>
+        </div>
+    </div>
+
+    <!-- ================= СТРАНИЦА 2: РЕЖИМ ДНЯ (добавлены водные процедуры, зарядка, полезные привычки) ================= -->
+    <div id="day-page" class="page">
+        <h1><i class="fas fa-alarm-clock"></i> Весёлый режим дня</h1>
+        <div class="grid-3">
+            <div class="item-card"><i class="fas fa-sunrise"></i><h3>☀️ 8:00</h3><p>Зарядка + 5 приседаний + улыбка!</p></div>
+            <div class="item-card"><i class="fas fa-pencil-alt"></i><h3>📚 10:00</h3><p>Полезные дела: чтение, решение примеров или рисование.</p></div>
+            <div class="item-card"><i class="fas fa-futbol"></i><h3>⚽ 12:00</h3><p>Активные игры на улице: футбол, салки, классики.</p></div>
+            <div class="item-card"><i class="fas fa-utensils"></i><h3>🍝 14:00</h3><p>Обед + тихий час или мультфильм (восстанавливаем силы).</p></div>
+            <div class="item-card"><i class="fas fa-swimmer"></i><h3>🏊 16:30</h3><p>Водные игры: плескаемся в бассейне или играем с водяными пистолетами.</p></div>
+            <div class="item-card"><i class="fas fa-moon"></i><h3>🌙 21:30</h3><p>Сказка на ночь, обнимашки и сладких снов!</p></div>
+        </div>
+        <div class="fun-fact">
+            💧 <strong>Полезная привычка:</strong> Пей воду каждые полчаса в жару! Это помогает быть бодрым.
+        </div>
+        <div class="daily-task" style="background:#ffe0b5; border-radius: 50px; padding: 20px;">
+            <i class="fas fa-check-circle"></i> <strong>Мой летний чек-лист (отмечай выполненное):</strong>
+            <div id="routineChecklist"></div>
+        </div>
+    </div>
+
+    <!-- ================= СТРАНИЦА 3: ИГРЫ (добавлены настолки и идеи для дождя) ================= -->
+    <div id="games-page" class="page">
+        <h1><i class="fas fa-dice-d6"></i> Летние игры + идеи на любой случай</h1>
+        <div class="grid-3">
+            <div class="item-card" onclick="alert('Вышибалы — бегай, прыгай и веселись!')"><i class="fas fa-futbol"></i><h3>Вышибалы</h3><p>Игра с мячом, развивает реакцию.</p></div>
+            <div class="item-card" onclick="alert('Классики — рисуй мелом и прыгай!')"><i class="fas fa-chalkboard"></i><h3>Классики</h3><p>Отличная дворовая игра.</p></div>
+            <div class="item-card" onclick="alert('Водные пистолеты — устраивай битву!')"><i class="fas fa-water"></i><h3>Водные бои</h3><p>Освежает в жару!</p></div>
+            <div class="item-card" onclick="alert('Прятки — классика жанра')"><i class="fas fa-tree"></i><h3>Прятки</h3><p>Ищи самые хитрые места.</p></div>
+            <div class="item-card" onclick="alert('Настольные игры — круто даже дома в дождь')"><i class="fas fa-chess-board"></i><h3>Настолки</h3><p>Дженга, Монополия, Лото.</p></div>
+            <div class="item-card" onclick="alert('Велосипед, самокат — активность на свежем воздухе!')"><i class="fas fa-bicycle"></i><h3>Велоспорт</h3><p>Катайся с друзьями, но надевай шлем!</p></div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-cloud-rain"></i> Игры, если идёт дождь</h3>
+            <p>🎨 Рисуем комиксы | 🎲 Настольный теннис дома | 🧩 Собираем пазлы | 🎭 Театр теней</p>
+        </div>
+        <div class="fun-fact">
+            🎮 <strong>Совет:</strong> Создай свой "Олимпийский турнир" с медалями из картона!
+        </div>
+    </div>
+
+    <!-- ================= СТРАНИЦА 4: БЕЗОПАСНОСТЬ (дополнена правилами на воде, в лесу) ================= -->
+    <div id="safety-page" class="page">
+        <h1><i class="fas fa-shield-heart"></i> Безопасное лето — важные правила</h1>
+        <div class="safety-list">
+            <li><i class="fas fa-sun"></i> 1. Всегда носи панамку и пользуйся солнцезащитным кремом.</li>
+            <li><i class="fas fa-swimming-pool"></i> 2. Купайся только с родителями и в специальных местах.</li>
+            <li><i class="fas fa-bicycle"></i> 3. Велосипед, ролики — только в шлеме и наколенниках.</li>
+            <li><i class="fas fa-tree"></i> 4. В лесу не ешь незнакомые ягоды и грибы, носи закрытую одежду.</li>
+            <li><i class="fas fa-ice-cream"></i> 5. Мой руки перед едой, чтобы микробы не попали в живот.</li>
+            <li><i class="fas fa-road"></i> 6. Переходи дорогу только на зелёный свет и держись за руку взрослого.</li>
+            <li><i class="fas fa-cloud-sun"></i> 7. В жару пей воду, не носи тяжёлые рюкзаки.</li>
+            <li><i class="fas fa-bug"></i> 8. Если укусил комар или клещ — сразу скажи взрослым!</li>
+        </div>
+        <div class="card" style="background:#c8e6df;">
+            <i class="fas fa-quote-left"></i> Помни: здоровье — самое главное. Безопасный отдых = счастливое лето!
+        </div>
+    </div>
+
+    <!-- ================= СТРАНИЦА 5: ПРИКЛЮЧЕНИЯ (добавлены раскраски, идеи дневника, счётчик дней) ================= -->
+    <div id="adventure-page" class="page">
+        <h1><i class="fas fa-map-signs"></i> Летние приключения</h1>
+        <div class="grid-3">
+            <div class="item-card"><i class="fas fa-hiking"></i><h3>Поход в лес</h3><p>Возьми компас, палатку и отправляйся с семьёй.</p></div>
+            <div class="item-card"><i class="fas fa-campground"></i><h3>Ночёвка в палатке</h3><p>Звёзды, костёр и песни под гитару.</p></div>
+            <div class="item-card"><i class="fas fa-fish"></i><h3>Рыбалка</h3><p>Попробуй поймать рыбку! Не забудь спиннинг.</p></div>
+            <div class="item-card"><i class="fas fa-volleyball-ball"></i><h3>Пляжный турнир</h3><p>Играй в волейбол, строй замки из песка.</p></div>
+            <div class="item-card"><i class="fas fa-seedling"></i><h3>Вырасти цветок</h3><p>Посади семечко и ухаживай за ним всё лето.</p></div>
+            <div class="item-card"><i class="fas fa-camera"></i><h3>Фотоохота</h3><p>Сделай 50 ярких фото лета!</p></div>
+        </div>
+        <div class="card" style="text-align:center;">
+            <h3>📅 До конца летних каникул осталось:</h3>
+            <div id="summerCountdown" style="font-size: 2.8rem; font-weight: bold; color:#e86f1f;">-- дней</div>
+            <p>Успевай совершить новые открытия!</p>
+        </div>
+        <div class="fun-fact" id="dailyIdea">
+            <i class="fas fa-gift"></i> <strong>Идея на сегодня:</strong> Загрузка...
+        </div>
+        <button id="newIdeaBtn"><i class="fas fa-sync-alt"></i> Новая идея</button>
+        <div class="card" style="margin-top:20px;">
+            <i class="fas fa-paintbrush-pencil"></i> <strong>Раскрась лето:</strong> нарисуй свой самый яркий летний день и покажи родителям!
+        </div>
+    </div>
+
+    <!-- ================= СТРАНИЦА 6: КНИГИ + РАСКРАСКИ + ЧТЕНИЕ (дополнительная страница) ================= -->
+    <div id="books-page" class="page">
+        <h1><i class="fas fa-book-open"></i> Летнее чтение и творчество</h1>
+        <div class="card">
+            <h2><i class="fas fa-star"></i> Список книг для начальной школы</h2>
+            <ul style="font-size:1.2rem; list-style-type: circle; margin-left: 30px;">
+                <li>📙 «Денискины рассказы» (Виктор Драгунский) — очень смешно!</li>
+                <li>📘 «В стране невыученных уроков» (Лия Гераскина) — полезно и интересно.</li>
+                <li>📗 «Приключения Незнайки и его друзей» (Николай Носов).</li>
+                <li>📕 «Сказки дядюшки Римуса» (Джоэль Харрис).</li>
+                <li>📔 «Конёк-Горбунок» (Пётр Ершов) — волшебная поэма.</li>
+                <li>📒 «Тим Талер, или Проданный смех» (Джеймс Крюс).</li>
+            </ul>
+        </div>
+        <div class="grid-3">
+            <div class="item-card"><i class="fas fa-palette"></i><h3>Раскраски-антистресс</h3><p>Скачай или нарисуй узоры, раскрась в яркие цвета.</p></div>
+            <div class="item-card"><i class="fas fa-dragon"></i><h3>Рисуем любимого героя</h3><p>Нарисуй персонажа из любимой книги.</p></div>
+            <div class="item-card"><i class="fas fa-scroll"></i><h3>Собери свою библиотеку</h3><p>Заведи полку летних книг и читай каждый день.</p></div>
+        </div>
+        <div class="fun-fact">
+            📖 Чтение развивает воображение и помогает лучше учиться в школе! Летом можно читать даже под деревом в гамаке.
+        </div>
+        <div class="card">
+            <i class="fas fa-quote-right"></i> "Кто много читает, тот много знает" — народная мудрость. Читай с удовольствием!
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><i class="fas fa-heart" style="color:#ff5e00;"></i> Сайт для учеников начальной школы. Весёлого и безопасного лета! <i class="fas fa-smile"></i></p>
+    <p>Читай, играй, твори и отдыхай с пользой ☀️</p>
+</footer>
+
+<script>
+    // МНОГОСТРАНИЧНОСТЬ
+    const pages = {
+        home: document.getElementById('home-page'),
+        day: document.getElementById('day-page'),
+        games: document.getElementById('games-page'),
+        safety: document.getElementById('safety-page'),
+        adventure: document.getElementById('adventure-page'),
+        books: document.getElementById('books-page')
+    };
+    const navBtns = document.querySelectorAll('.nav-btn');
+    function switchPage(pageId) {
+        Object.values(pages).forEach(page => page.classList.remove('active-page'));
+        pages[pageId].classList.add('active-page');
+        navBtns.forEach(btn => {
+            if(btn.getAttribute('data-page') === pageId) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    }
+    navBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const page = btn.getAttribute('data-page');
+            if(page && pages[page]) switchPage(page);
+        });
+    });
+    document.getElementById('startBtn')?.addEventListener('click', () => switchPage('day'));
+
+    // Чек-лист режима дня с сохранением
+    const routineSteps = ["🔆 Утренняя зарядка", "🥣 Здоровый завтрак", "📖 Чтение 20 минут", "⚽ Активные игры на улице", "🍲 Вкусный обед", "💤 Отдых/мультфильм", "🏊 Водные игры", "🌙 Сказка на ночь"];
+    let routineChecked = JSON.parse(localStorage.getItem('routineChecklist')) || new Array(routineSteps.length).fill(false);
+    const routineContainer = document.getElementById('routineChecklist');
+    function renderRoutine() {
+        if(!routineContainer) return;
+        routineContainer.innerHTML = '';
+        routineSteps.forEach((step, idx) => {
+            const div = document.createElement('div');
+            div.className = `checklist-item ${routineChecked[idx] ? 'completed' : ''}`;
+            div.innerHTML = `<i class="fas ${routineChecked[idx] ? 'fa-check-circle' : 'fa-circle'}"></i> ${step}`;
+            div.addEventListener('click', () => {
+                routineChecked[idx] = !routineChecked[idx];
+                localStorage.setItem('routineChecklist', JSON.stringify(routineChecked));
+                renderRoutine();
+                showMessage(routineChecked[idx] ? `Молодец! ✅ ${step}` : `Отмена: ${step}`);
+            });
+            routineContainer.appendChild(div);
+        });
+    }
+    function showMessage(text) {
+        let msg = document.createElement('div');
+        msg.innerText = text;
+        msg.style.position = 'fixed';
+        msg.style.bottom = '20px';
+        msg.style.left = '50%';
+        msg.style.transform = 'translateX(-50%)';
+        msg.style.backgroundColor = '#ff8c42';
+        msg.style.color = 'white';
+        msg.style.padding = '10px 18px';
+        msg.style.borderRadius = '40px';
+        msg.style.zIndex = '999';
+        msg.style.fontWeight = 'bold';
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 1800);
+    }
+    renderRoutine();
+
+    // Таймер до 31 августа
+    function getDaysUntilEndSummer() {
+        const today = new Date();
+        let end = new Date(today.getFullYear(), 7, 31);
+        if(today > end) end = new Date(today.getFullYear() + 1, 7, 31);
+        const diff = Math.ceil((end - today) / (1000*60*60*24));
+        return diff > 0 ? diff : 0;
+    }
+    const countdownSpan = document.getElementById('summerCountdown');
+    if(countdownSpan) {
+        function updateSummerLeft() { countdownSpan.innerText = getDaysUntilEndSummer() + " дней"; }
+        updateSummerLeft();
+        setInterval(updateSummerLeft, 86400000);
+    }
+
+    // Генератор идей для приключений
+    const adventureIdeas = [
+        "🌻 Нарисуй мелом на асфальте огромную радугу!", "🍋 Сделай лимонад и угости друзей.",
+        "📸 Устрой фотоконкурс «Самое смешное летнее фото»", "🐞 Найди божью коровку и загадай желание.",
+        "🏰 Построй замок из песка", "📖 Прочитай книгу о приключениях", "🌿 Посади растение и ухаживай за ним.",
+        "🎨 Сделай кормушку для птиц", "🧺 Сходи в поход с семьёй", "🪁 Запусти воздушного змея"
+    ];
+    const dailyIdeaDiv = document.getElementById('dailyIdea');
+    function setRandomIdea() {
+        if(dailyIdeaDiv) {
+            const idx = Math.floor(Math.random() * adventureIdeas.length);
+            dailyIdeaDiv.innerHTML = `<i class="fas fa-gift"></i> <strong>Идея на сегодня:</strong> ${adventureIdeas[idx]}`;
+        }
+    }
+    setRandomIdea();
+    document.getElementById('newIdeaBtn')?.addEventListener('click', setRandomIdea);
+
+    // Загадка на главной
+    const answerBtn = document.getElementById('riddleAnswerBtn');
+    if(answerBtn) {
+        answerBtn.addEventListener('click', () => {
+            const ansDiv = document.getElementById('riddleAns');
+            if(ansDiv) ansDiv.style.display = 'block';
+        });
+    }
+
+    // Клики по карточкам
+    document.querySelectorAll('.item-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.querySelector('h3')?.innerText || 'это интересно';
+            showMessage(`🌞 Ура! ${title} — здорово!`);
+        });
+    });
+</script>
+</body>
+</html>
